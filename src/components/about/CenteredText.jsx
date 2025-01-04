@@ -12,6 +12,7 @@ function CenteredText() {
         titleStyle="font-heading mb-4 text-2xl lg:text-[40px] text-charcoal"
         descStyle="text-sm lg:text-lg leading-relaxed"
       />
+      
       <div className="w-full bg-gray-200">
         <img
           src={image}

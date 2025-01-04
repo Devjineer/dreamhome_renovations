@@ -1,12 +1,8 @@
-import axios from "axios";
+import makeRequest from "../lib/axios";
 
 const sendMail = async (options, url = "/send-mail") => {
-  try {
-    await axios.post(`/api${url}`, options);
-    console.log("good");
-  } catch (error) {
-    console.log(error);
-  }
+  const { data } = await makeRequest({ url, method: "post", data: options });
+  console.log(data);
 };
 
 export default sendMail;
