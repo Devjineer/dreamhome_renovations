@@ -14,7 +14,7 @@ const MobileNav = () => {
         <Nav
           menuStyle="w-full h-screen fixed top-0 left-0 bg-white/50 backdrop-blur flex-center"
           menuListStyle="flex-apart flex-col"
-          menuListItemStyle="text-xl text-tea font-heading mb-5"
+          menuListItemStyle="text-xl text-charcoal font-heading mb-5"
           setShowOff={toggleOff}
         />
       )}

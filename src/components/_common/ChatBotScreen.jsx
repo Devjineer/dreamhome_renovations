@@ -34,11 +34,13 @@ const ChatBotScreen = ({
     if (numberOfMessages === 4) {
       const name = messages[1].msg;
       const email = messages[3].msg;
+      setMessages((prev) => [
+        ...prev,
+        { msg: "Please wait a moment", user: "bot" },
+      ]);
       (async () => {
         await sendMail({ name, email }, "/send-mail/bot");
-        setTimeout(() => {
-          noMoreFirstRender();
-        }, 3000);
+        noMoreFirstRender();
       })();
     }
   }, [messages]);
@@ -61,14 +63,20 @@ const ChatBotScreen = ({
 
       <InputField
         type="textarea"
-        containerStyle="min-h-[4rem] flex-center px-5"
+        containerStyle="flex-center px-5 pt-5 pb-10"
         inputContainerStyle="flex-center flex-1 gap-x-2"
-        inputStyle="flex-1 px-2 resize-none h-7 pt-1 border"
+        inputStyle="flex-1 px-2 resize-none h-7 pt-1 outline-none border-none"
         placeholder="Type Your Message"
         value={userInput}
         iconSrc={icons.send}
         handleChange={(e) => setUserInput(e.currentTarget.value)}
         handleBtnClick={handleBtnClick}
+        onKeyPress={(e) => {
+          const theKey = e.key;
+          if (theKey === "Enter") {
+            handleBtnClick();
+          }
+        }}
       />
     </div>
   );

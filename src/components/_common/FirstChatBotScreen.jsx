@@ -1,9 +1,4 @@
-import React, { useEffect, useState } from "react";
-import ChatBotHeader from "./ChatBotHeader";
-import ChatBox from "./ChatBox";
-import Chat from "./Chat";
-import InputField from "./InputField";
-import { icons } from "../../constants";
+import React, { useState } from "react";
 import ChatBotScreen from "./ChatBotScreen";
 
 const FirstChatBotScreen = ({
@@ -33,7 +28,6 @@ const FirstChatBotScreen = ({
       setMessages={setMessages}
       setUserInput={setUserInput}
       handleBtnClick={handleBtnClick}
-      // first={false}
       noMoreFirstRender={noMoreFirstRender}
     />
   );

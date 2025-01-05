@@ -14,6 +14,7 @@ const InputField = ({
   mustFill = true,
   handleChange,
   handleBtnClick,
+  ...props
 }) => {
   const displayInput = () => {
     switch (type) {
@@ -25,6 +26,7 @@ const InputField = ({
             placeholder={placeholder}
             value={value}
             onChange={handleChange}
+            {...props}
           />
         );
       default:
@@ -37,6 +39,7 @@ const InputField = ({
             value={value}
             onInput={handleChange}
             required
+            {...props}
           />
         );
     }

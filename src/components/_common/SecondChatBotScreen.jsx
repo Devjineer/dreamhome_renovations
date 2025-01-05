@@ -1,15 +1,10 @@
 import React, { useState } from "react";
-import ChatBotHeader from "./ChatBotHeader";
-import ChatBox from "./ChatBox";
-import InputField from "./InputField";
-import { icons } from "../../constants";
-import Chat from "./Chat";
 import ChatBotScreen from "./ChatBotScreen";
 
 const SecondChatBotScreen = ({ isChatBoardOpen, toggleOff }) => {
   const [userInput, setUserInput] = useState("");
   const [messages, setMessages] = useState([
-    { user: "bot", msg: "Please provide your name" },
+    { user: "bot", msg: "Hello, how can I help you??" },
   ]);
 
   const handleBtnClick = () => {

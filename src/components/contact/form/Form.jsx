@@ -3,6 +3,7 @@ import { InputField, Btn } from "../../_common";
 import sendMail from "../../../services/sendemail";
 import { useState } from "react";
 import Loading from "../../_loaders/Loading";
+import swal from "sweetalert";
 
 const Form = ({ btnVariant }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -24,7 +25,8 @@ const Form = ({ btnVariant }) => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      await sendMail(contactFormData);
+      const { msg } = await sendMail(contactFormData);
+      swal("Sent", msg, "success");
       setContactFormData({
         firstname: "",
         lastname: "",
@@ -106,7 +108,7 @@ const Form = ({ btnVariant }) => {
         text={!isLoading && "Submit"}
         variant={btnVariant}
         containerStyle="w-full h-10 mt-3 text-sm flex-center"
-        // disabled={isLoading}
+        disabled={isLoading}
         loadingIcon={isLoading && <Loading />}
       />
     </form>
