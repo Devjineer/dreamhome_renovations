@@ -1,4 +1,3 @@
-import { icons } from "../../constants";
 import { ChatBot, Footer, Header } from "../_common";
 
 const MainLayout = ({ children }) => {

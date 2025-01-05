@@ -2,8 +2,10 @@ import "./form.css";
 import { InputField, Btn } from "../../_common";
 import sendMail from "../../../services/sendemail";
 import { useState } from "react";
+import Loading from "../../_loaders/Loading";
 
 const Form = ({ btnVariant }) => {
+  const [isLoading, setIsLoading] = useState(false);
   const [contactFormData, setContactFormData] = useState({
     firstname: "",
     lastname: "",
@@ -20,16 +22,23 @@ const Form = ({ btnVariant }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await sendMail(contactFormData);
-    setContactFormData({
-      firstname: "",
-      lastname: "",
-      phone: "",
-      subject: "",
-      message: "",
-    });
+    setIsLoading(true);
+    try {
+      await sendMail(contactFormData);
+      setContactFormData({
+        firstname: "",
+        lastname: "",
+        phone: "",
+        subject: "",
+        message: "",
+      });
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
   };
-  
+
   return (
     <form
       onSubmit={handleSubmit}
@@ -94,10 +103,11 @@ const Form = ({ btnVariant }) => {
       />
 
       <Btn
-        text={"Submit"}
+        text={!isLoading && "Submit"}
         variant={btnVariant}
-        containerStyle="w-full h-10 mt-3 text-sm"
+        containerStyle="w-full h-10 mt-3 text-sm flex-center"
         // disabled={isLoading}
+        loadingIcon={isLoading && <Loading />}
       />
     </form>
   );

@@ -11,7 +11,7 @@ const getBtnVariant = (variant) => {
   }
 };
 
-const Btn = ({ text, containerStyle, handleClick, variant, ...props}) => {
+const Btn = ({ text, containerStyle, handleClick, variant, loadingIcon, ...props}) => {
   return (
     <button
       className={`${containerStyle} ${getBtnVariant(variant)}`}
@@ -19,6 +19,7 @@ const Btn = ({ text, containerStyle, handleClick, variant, ...props}) => {
       {...props}
     >
       {text}
+      {loadingIcon && loadingIcon}
     </button>
   );
 };
