@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import ChatBotHeader from "./ChatBotHeader";
 import ChatBox from "./ChatBox";
 import Chat from "./Chat";
@@ -10,15 +10,14 @@ const ChatBotScreen = ({
   toggleOff,
   title,
   description,
-  messages,
+  messageArray = [{ user: "bot", msg: "Please provide your name" }],
   isChatBoardOpen,
-  userInput,
   first = true,
-  setMessages,
-  setUserInput,
-  handleBtnClick,
   noMoreFirstRender,
 }) => {
+  const [messages, setMessages] = useState(messageArray);
+  const [userInput, setUserInput] = useState("");
+
   useEffect(() => {
     if (!first) return;
 
@@ -44,6 +43,12 @@ const ChatBotScreen = ({
       })();
     }
   }, [messages]);
+
+  const handleBtnClick = () => {
+    if (!userInput) return;
+    setMessages((prev) => [...prev, { msg: userInput, user: "default" }]);
+    setUserInput("");
+  };
 
   if (!isChatBoardOpen) return null;
 
